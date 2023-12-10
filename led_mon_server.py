@@ -6,6 +6,8 @@ import time
 from led_control import *
 
 class _RequestHandler(BaseHTTPRequestHandler):
+    lc = LedControl()
+
     # Borrowing from https://gist.github.com/nitaku/10d0662536f37a087e1b
     def _set_headers(self):
         self.send_response(HTTPStatus.OK.value)
@@ -21,7 +23,10 @@ class _RequestHandler(BaseHTTPRequestHandler):
         message['date_ms'] = int(time.time()) * 1000
         self._set_headers()
         print(message)
-        self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
+        
+        self.lc.set_led(int(message["cpu"]))
+
+        #self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):
         # Send allow-origin header for preflight POST XHRs.
@@ -40,5 +45,4 @@ def run_server():
 
 
 if __name__ == '__main__':
-    lc = LedControl()
-    #run_server()
+    run_server()
