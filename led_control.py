@@ -4,7 +4,7 @@ import board
 import neopixel
 
 class LedControl():
-    pixels = neopixel.NeoPixel(board.D18, 12,auto_write=False)
+    pixels = neopixel.NeoPixel(board.D18, 12,auto_write=False, brightness=0.2)
 
     def __init__(self):
         self.pixels.fill((0,0,0))
@@ -19,6 +19,9 @@ class LedControl():
 
         for i in range(led_count):
             self.pixels[i] = (r_pix,g_pix,0) 
+        for i in range(led_count,12):
+            self.pixels[i] = (0,0,0)
+        
         self.pixels.show()
 
     def set_zero(self):
