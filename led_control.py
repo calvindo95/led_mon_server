@@ -10,8 +10,6 @@ class LedControl():
         self.pixels.fill((0,0,0))
 
     def set_led(self, m_float):
-        self.set_zero()
-
         led_count = math.ceil(m_float/10 * 12/10)
         
         r_pix = math.floor(m_float * 255 / 100)
