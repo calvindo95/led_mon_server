@@ -21,6 +21,13 @@ class LedControl():
             self.pixels[i] = (0,0,0)
         
         self.pixels.show()
+    
+    def set_rings(self, json_message):
+        num_cpu = int(json_message["cpuNum"])
+
+        for i in range(num_cpu):
+            cpu_perc = json_message[f"cpu{i}"]
+            self.set_led(cpu_perc)
 
     def set_zero(self):
         self.pixels.fill((0,0,0))

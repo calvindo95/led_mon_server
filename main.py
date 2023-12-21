@@ -27,7 +27,7 @@ class _RequestHandler(BaseHTTPRequestHandler):
         if int(message["cpuNum"]) == 0:
             self.lc.set_led(int(message["cpu"]))
         else:
-            print("Need to implement multicpu json parsing")
+            self.lc.set_rings(message)
         #self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):
