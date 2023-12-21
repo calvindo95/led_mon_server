@@ -24,8 +24,8 @@ class _RequestHandler(BaseHTTPRequestHandler):
         self._set_headers()
         print(message)
         
-        if int(message["cpuNum"]) == 0:
-            self.lc.set_led(int(message["cpu"]))
+        if int(message["cpuNum"]) == 1:
+            self.lc.set_led(1, int(message["cpu0"]))
         else:
             self.lc.set_rings(message)
         #self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
