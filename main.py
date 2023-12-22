@@ -26,9 +26,11 @@ class _RequestHandler(BaseHTTPRequestHandler):
         if int(message["cpuNum"]) == 0:
             lc = LedControl(0)
             lc.set_led(0, int(message["cpu0"]))
+            lc.set_show()
         else:
             lc = LedControl(int(message["cpuNum"]))
             lc.set_rings(message)
+            lc.set_show()
         #self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):

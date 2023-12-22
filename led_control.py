@@ -11,18 +11,16 @@ class LedControl():
         self.pixels = neopixel.NeoPixel(board.D18, num_pixels,auto_write=False, brightness=0.2)
         self.pixels.fill((0,0,0))
 
-    def set_led(self, m_num_cpu, m_float):
+    def set_led(self, cpu_num, m_float):
         led_count = math.ceil(m_float/10 * 12/10)
         
         r_pix = math.floor(m_float * 255 / 100)
         g_pix = 255 - (math.floor(m_float * 255 / 100))
-        for i in range(12 * (m_num_cpu), led_count + 12 * (m_num_cpu)):
+        for i in range(12 * (cpu_num), led_count + 12 * (cpu_num)):
             self.pixels[i] = (r_pix,g_pix,0)
  
-        for i in range(led_count + 12 * m_num_cpu, (m_num_cpu * 12)+12):
+        for i in range(led_count + 12 * cpu_num, (cpu_num * 12)+12):
             self.pixels[i] = (0,0,0)
-        
-        self.pixels.show()
     
     def set_rings(self, json_message):
         num_cpu = int(json_message["cpuNum"])
@@ -33,4 +31,7 @@ class LedControl():
 
     def set_zero(self):
         self.pixels.fill((0,0,0))
+        self.pixels.show()
+
+    def set_show(self):
         self.pixels.show()
