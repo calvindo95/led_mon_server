@@ -4,9 +4,11 @@ import board
 import neopixel
 
 class LedControl():
-    pixels = neopixel.NeoPixel(board.D18, 48,auto_write=False, brightness=0.2)
+    pixels = None
 
-    def __init__(self):
+    def __init__(self,num_cpu):
+        num_pixels = 12 * (num_cpu+1)
+        self.pixels = neopixel.NeoPixel(board.D18, num_pixels,auto_write=False, brightness=0.2)
         self.pixels.fill((0,0,0))
 
     def set_led(self, m_num_cpu, m_float):

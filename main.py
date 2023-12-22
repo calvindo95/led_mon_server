@@ -6,7 +6,6 @@ import time
 from led_control import *
 
 class _RequestHandler(BaseHTTPRequestHandler):
-    lc = LedControl()
 
     # Borrowing from https://gist.github.com/nitaku/10d0662536f37a087e1b
     def _set_headers(self):
@@ -25,9 +24,11 @@ class _RequestHandler(BaseHTTPRequestHandler):
         print(message)
         
         if int(message["cpuNum"]) == 0:
-            self.lc.set_led(0, int(message["cpu0"]))
+            lc = LedControl(0)
+            lc.set_led(0, int(message["cpu0"]))
         else:
-            self.lc.set_rings(message)
+            lc = LedControl(int(message["cpuNum"]))
+            lc.set_rings(message)
         #self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):
