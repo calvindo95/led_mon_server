@@ -4,7 +4,7 @@ import board
 import neopixel
 
 class LedControl():
-    pixels = neopixel.NeoPixel(board.D18, 24,auto_write=False, brightness=0.2)
+    pixels = neopixel.NeoPixel(board.D18, 48,auto_write=False, brightness=0.2)
 
     def __init__(self):
         self.pixels.fill((0,0,0))
@@ -24,8 +24,8 @@ class LedControl():
     
     def set_rings(self, json_message):
         num_cpu = int(json_message["cpuNum"])
-
-        for i in range(num_cpu):
+        print(num_cpu)
+        for i in range(4):
             cpu_perc = json_message[f"cpu{i}"]
             self.set_led(i, cpu_perc)
 
