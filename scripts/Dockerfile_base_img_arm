@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM balenalib/raspberry-pi-debian:bullseye
 
 # Update apt repos
 RUN apt update --allow-unauthenticated
@@ -8,6 +8,4 @@ RUN apt upgrade -y
 RUN apt -y install git
 RUN apt -y install curl wget vim
 RUN apt -y install libtool libcurl4-openssl-dev
-RUN apt -y install cmake make automake
-RUN apt -y install g++ clang
-RUN apt -y install python3-dev
+RUN apt -y install python3-dev python3-pip

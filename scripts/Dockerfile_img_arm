@@ -1,0 +1,21 @@
+FROM led_mon_server-base-img
+
+ENV HOME=/home/webserver
+ENV LED_MON_SERVER_EXEC=/home/webserver/led_mon_server/main.py
+
+RUN useradd -ms /bin/bash webserver
+WORKDIR /home/webserver/
+
+RUN git clone https://github.com/calvindo95/led_mon_server.git && \
+    cd led_mon_server && \
+    pip3 install -r requirements.txt
+
+#RUN git clone -b test https://github.com/calvindo95/led_mon.git && \
+#    cd led_mon/include && wget https://github.com/nlohmann/json/releases/download/v3.11.2/json.hpp && cd .. && \
+#    mkdir build && cd build && \
+#    cmake .. && \
+#    cmake --build . -j4 --target install
+
+CMD ["sudo /home/webserver/led_mon_server/scripts/run_server.sh"]
+USER webserver
+WORKDIR /home/webserver/

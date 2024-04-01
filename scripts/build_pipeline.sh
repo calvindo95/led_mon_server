@@ -7,8 +7,8 @@ BASE_IMG="led_mon_server-base-img"
 FINAL_IMG="led_mon_server-img"
 CONTAINER_NAME="led_mon_server"
 
-BASE_DOCKERFILE="scripts/Dockerfile_base_img_x86"
-FINAL_DOCKERFILE="scripts/Dockerfile_img_x86"
+BASE_DOCKERFILE="scripts/Dockerfile_base_img_arm"
+FINAL_DOCKERFILE="scripts/Dockerfile_img_arm"
 
 if $(docker image ls | grep -q ${BASE_IMG})
 then
