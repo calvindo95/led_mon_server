@@ -12,7 +12,7 @@ class LedControl():
         self.pixels.fill((0,0,0))
 
     def set_led(self, cpu_num, m_float):
-        led_count = math.ceil(m_float/10 * 12/10)
+        led_count = math.floor(m_float/10 * 12/10)
         
         r_pix = math.floor(m_float * 255 / 100)
         g_pix = 255 - (math.floor(m_float * 255 / 100))
@@ -24,9 +24,8 @@ class LedControl():
     
     def set_rings(self, json_message):
         num_cpu = int(json_message["cpuNum"])
-        print(num_cpu)
-        for i in range(4):
-            cpu_perc = json_message[f"cpu{i}"]
+        for i in range(num_cpu+1):
+            cpu_perc = json_message["CPU"][f"cpu{i}"]
             self.set_led(i, cpu_perc)
 
     def set_zero(self):

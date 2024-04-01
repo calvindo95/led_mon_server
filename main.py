@@ -21,7 +21,7 @@ class _RequestHandler(BaseHTTPRequestHandler):
         message = json.loads(self.rfile.read(length))
         message['date_ms'] = int(time.time()) * 1000
         self._set_headers()
-        print(message)
+        #print(message)
         
         if int(message["cpuNum"]) == 0:
             lc = LedControl(0)
