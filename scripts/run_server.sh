@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [ -f $LED_MON_EXEC ];
+if [ -f $LED_MON_SERVER_EXEC ];
 then
-    $LED_MON_EXEC
+    $LED_MON_SERVER_EXEC
 else
-    echo "$LED_MON_EXEC not found"
+    echo "$LED_MON_SERVER_EXEC not found"
     exit
 fi
