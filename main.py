@@ -25,7 +25,7 @@ class _RequestHandler(BaseHTTPRequestHandler):
         
         if int(message["cpuNum"]) == 0:
             lc = LedControl(0)
-            lc.set_led(0, int(message["cpu0"]))
+            lc.set_led(0, int(message["CPU"]["cpu0"]))
         else:
             lc = LedControl(int(message["cpuNum"]))
             lc.set_rings(message)
